@@ -881,16 +881,12 @@ function renderPhoneView() {
     phoneRoot.innerHTML = `
       <div class="phone-container phone-main-view">
         <div class="summary-bar">
-        <div class="summary-item" id="phone-name" style="font-weight: 600; color: #6c63ff; text-align: left; justify-content: flex-start; display: flex; align-items: center;">
-          ${(() => {
-            const name = localStorage.getItem('user-name') || 'Name';
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const active = window.activeDate || todayStr();
-            const d = new Date(active);
-            const dayName = days[d.getDay()];
-            return `Happy ${dayName}, ${name}`;
-          })()}
-        </div>
+          <div class="summary-item" id="phone-name" style="font-weight: 600; color: #6c63ff; text-align: left; justify-content: flex-start; display: flex; align-items: center;">
+            ${(() => {
+              const name = localStorage.getItem('user-name') || 'Name';
+              return `Hello, ${name}!`;
+            })()}
+          </div>
           <div class="summary-item" id="phone-feeling" title="Edit Feeling" tabindex="0">
             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.1em;">
               <span>${getFeelingEmoji(parseInt(feeling))}</span>

@@ -1059,8 +1059,15 @@ main {
   box-shadow: 0 1px 3px rgba(70,130,180,0.05);
   min-width: 0;
   word-break: break-word;
-  border: 1px solid #e0e7ff;
-  transition: box-shadow 0.2s;
+  border: 3.5px solid var(--primary-color, #6c63ff) !important;
+  box-shadow: 0 2px 8px rgba(108,99,255,0.13);
+}
+
+/* Special border for Default Dark theme */
+body.default-dark .activity-mini {
+  border: 3.5px solid #a3bffa !important;
+  background: #232136;
+  color: #a3bffa;
 }
 .activity-mini:hover {
   box-shadow: 0 2px 8px rgba(108,99,255,0.13);
@@ -1123,8 +1130,8 @@ main {
   box-shadow: 0 1px 3px rgba(70,130,180,0.05);
   min-width: 0;
   word-break: break-word;
-  border: 1px solid #b6e0fe;
-  transition: box-shadow 0.2s;
+  border: 2.5px solid #28a745;
+  box-shadow: 0 2px 8px rgba(40,167,69,0.10);
 }
 .accomplished-mini:hover {
   box-shadow: 0 2px 8px rgba(40,167,69,0.13);
@@ -1312,8 +1319,8 @@ main {
   box-shadow: 0 1px 3px rgba(70,130,180,0.05);
   min-width: 0;
   word-break: break-word;
-  border: 1px solid #ffb3d9;
-  transition: box-shadow 0.2s;
+  border: 2.5px solid #e75480;
+  box-shadow: 0 2px 8px rgba(231,84,128,0.10);
 }
 
 .goal-mini:hover {
