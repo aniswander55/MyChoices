@@ -752,7 +752,7 @@ function renderPhoneView() {
         
         <!-- Expandable Color Theme Section -->
         <div style="background: rgba(255,255,255,0.95); border-radius: 20px; margin-bottom: 1em; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
-          <h3 class="expandable-heading" id="color-theme-heading" style="margin: 0 0 1em 0; color: #6c63ff; font-size: 1.2em; text-align: center; cursor: pointer;">
+          <h3 class="expandable-heading" id="color-theme-heading" style="margin: 1em 0 1em 0; color: #6c63ff; font-size: 1.2em; text-align: center; cursor: pointer;">
             🎨 Color Theme
           </h3>
           <div class="expandable-section" id="color-theme-section" style="display:none; padding: 1.5em 1.5em 0 1.5em;">
@@ -785,7 +785,7 @@ function renderPhoneView() {
         
         <!-- Expandable Activities Section -->
         <div style="background: rgba(255,255,255,0.95); border-radius: 20px; margin-bottom: 1em; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
-          <h3 class="expandable-heading" id="activities-heading" style="margin: 0 0 1em 0; color: #6c63ff; font-size: 1.2em; text-align: center; cursor: pointer;">
+          <h3 class="expandable-heading" id="activities-heading" style="margin: 1em 0 1em 0; color: #6c63ff; font-size: 1.2em; text-align: center; cursor: pointer;">
               🎯 Manage Activities
             </h3>
           <div class="expandable-section" id="activities-section" style="display:none; padding: 1.5em 1.5em 0 1.5em;">
@@ -809,7 +809,7 @@ function renderPhoneView() {
         
         <!-- Expandable History Section -->
         <div style="background: rgba(255,255,255,0.95); border-radius: 20px; margin-bottom: 1em; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
-          <h3 class="expandable-heading" id="history-heading" style="margin: 0 0 1em 0; color: #6c63ff; font-size: 1.2em; text-align: center; cursor: pointer;">
+          <h3 class="expandable-heading" id="history-heading" style="margin: 1em 0 1em 0; color: #6c63ff; font-size: 1.2em; text-align: center; cursor: pointer;">
             📅 History
           </h3>
           <div class="expandable-section" id="settings-history-section" style="display:none; padding: 1.5em 1.5em 0 1.5em;"></div>
@@ -1076,6 +1076,13 @@ function renderPhoneView() {
       box.style.background = 'rgba(0, 255, 180, 0.18)'; // teal-green, semi-transparent
       box.style.border = '2px solid #00e6a8'; // brighter teal border
     });
+  } else if (colors.name === 'Default') {
+    // For Default theme, set My Goals heading to a red shade
+    const goalsHeading = document.getElementById('goals-title-heading');
+    if (goalsHeading) {
+      goalsHeading.style.color = '#d7263d'; // Vibrant red
+      goalsHeading.style.textShadow = '0 2px 8px rgba(215,38,61,0.10)';
+    }
   }
 }
 
@@ -1304,10 +1311,16 @@ document.addEventListener('change', function(e) {
 
 // Make entire date picker container clickable
 document.addEventListener('click', function(e) {
-  if (e.target.id === 'phone-date-picker-container') {
+  if (e.target.id === 'phone-date-picker-container' || e.target.closest('#phone-date-picker-container')) {
     const dateInput = document.getElementById('phone-date-picker');
     if (dateInput) {
-      dateInput.showPicker();
+      // Try showPicker if available, otherwise focus
+      if (typeof dateInput.showPicker === 'function') {
+        dateInput.showPicker();
+      } else {
+        dateInput.focus();
+        dateInput.click();
+      }
     }
   }
 });
