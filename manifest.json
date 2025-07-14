@@ -1,0 +1,26 @@
+{
+  "name": "MyChoice",
+  "short_name": "MyChoice",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#b6e0fe",
+  "theme_color": "#4536b8",
+  "description": "Track and earn daily rewards for positive activities!",
+  "icons": [
+    {
+      "src": "public/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "public/images/avatars/avatar_1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "public/images/avatars/avatar_2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeenRewards</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c63ff">
+    <meta name="description" content="Track daily activities, goals, rewards, notes, and mood">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+</head>
+<body>
+    <!-- Phone View Root Container -->
+    <div id="phone-view-root"></div>
+
+    <!-- Activity Modal -->
+    <div id="activity-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2 id="modal-title">Add Activity</h2>
+            <form id="modal-activity-form">
+                <div class="form-group">
+                    <label for="modal-activity-name">Activity Name:</label>
+                    <input type="text" id="modal-activity-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-activity-reward">Points:</label>
+                    <input type="number" id="modal-activity-reward" min="1" max="100" value="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-activity-icon">Icon:</label>
+                    <input type="text" id="modal-activity-icon" placeholder="✨" maxlength="2">
+                    <div id="icon-picker" class="icon-picker"></div>
+                </div>
+                <div id="modal-goal-toggle-row" class="form-group"></div>
+                <div class="modal-buttons">
+                    <button type="submit" id="modal-save">Save</button>
+                    <button type="button" id="modal-cancel">Cancel</button>
+                    <button type="button" id="modal-delete" style="display: none;">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notes Modal -->
+    <div id="notes-modal" class="modal" style="display: none;">
+        <div class="modal-content notes-modal-content">
+            <h2>Notes for Today</h2>
+            <div class="notes-textarea-container">
+                <textarea id="notes-textarea" placeholder="Write your notes here..."></textarea>
+            </div>
+            <div class="modal-buttons">
+                <button id="notes-save-btn">Save</button>
+                <button id="notes-cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feeling Modal -->
+    <div id="feeling-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>How are you feeling today?</h2>
+            <div class="feeling-slider-container">
+                <input type="range" id="feeling-slider" min="1" max="10" value="5">
+                <div id="feeling-slider-value">5</div>
+            </div>
+            <div class="modal-buttons">
+                <button id="feeling-save-btn">Save</button>
+                <button id="feeling-cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="export-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Export Report</h2>
+            <div class="export-type-selection">
+                <label>
+                    <input type="radio" name="export-type" value="single" checked>
+                    Single Day Report
+                </label>
+                <label>
+                    <input type="radio" name="export-type" value="range">
+                    Date Range Report
+                </label>
+            </div>
+            
+            <div id="single-date-section">
+                <label for="export-single-date">Select Date:</label>
+                <input type="date" id="export-single-date">
+            </div>
+            
+            <div id="date-range-section" style="display: none;">
+                <label for="export-start-date">Start Date:</label>
+                <input type="date" id="export-start-date">
+                <label for="export-end-date">End Date:</label>
+                <input type="date" id="export-end-date">
+            </div>
+            
+            <div class="modal-buttons">
+                <button id="export-generate-btn">Generate Report</button>
+                <button id="export-cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="rewards.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
